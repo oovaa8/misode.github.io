@@ -189,6 +189,10 @@ function StringHead({ type, optional, excludeStrings, node, ctx }: Props<StringT
 		onChangeValue(value ?? '')
 	}, [value, onChangeValue])
 
+	console.log("ctx here:")
+	console.log(ctx)
+	const symbol = ctx.symbols.lookup("worldgen/density_function", ["minecraft:resource"]);
+	console.log(symbol)
 	const completions = useMemo(() => {
 		const values = getValues(type, { ...ctx, offset: node?.range.start ?? 0 })
 			.filter(c => c.kind === 'string' && c.value !== 'THIS')

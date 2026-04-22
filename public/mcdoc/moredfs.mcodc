@@ -1,0 +1,20 @@
+type DensityFunctionModded = (
+	NoiseRange | 
+	struct {
+		type: #[id="worldgen/density_function_type"] string,
+		...moredfs:density_function[[type]],
+	} |
+)
+
+dispatch minecraft:resource["worldgen/density_function"] to DensityFunctionModded
+
+dispatch moredfs:density_function[
+	sin,
+	cos,
+] to struct OneArgument {
+	argument: DensityFunctionRef,
+}
+
+dispatch minecraft:worldgen/density_function_type[
+	sin,cos,
+]
